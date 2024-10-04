@@ -39,7 +39,7 @@
 ## 📧 יצירת קשר
 - **מייל:** hivesparks@gmail.com
 - **אתר:** [SphereCraftLab.com](https://AnLoMinus.GitHub.io/SphereCraftLab)
-- **LinkedIn:** [LinkedIn Profile](https://linkedin.com/in/username)
+- **LinkedIn:** [LinkedIn Profile](https://www.linkedin.com/in/anlominus/)
 
 ## 💬 הצטרפו אלינו!
 תודה על הביקור! אל תשכחו לככב ⭐ על הריפו אם מצאתם אותו מועיל ושתפו עם הקהילה. כל פידבק או רעיונות לשיפור יתקבלו בברכה! 👏
