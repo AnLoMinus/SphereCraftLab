@@ -188,21 +188,84 @@
             }
         }
     </style>
+
+    <style>
+        /* ... שאר הסגנונות הקודמים ... */
+
+        .content-container {
+            width: 80%;
+            height: 100%;
+            /* מותאם לגובה התוכן */
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.5);
+            padding: 30px;
+            overflow: hidden;
+            display: none;
+            border: 3px solid #0096ff;
+            /* גבול כחול */
+            backdrop-filter: blur(15px);
+            transition: all 0.6s ease;
+            transform: rotateX(2deg) translateZ(30px);
+        }
+
+        .content-container.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+            transform: rotateX(0deg) translateZ(0);
+        }
+
+        /* מוסיף צללים מתקדמים */
+        .content-container h2 {
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
+            margin-bottom: 20px;
+            /* רווח מתחת לכותרת */
+            position: relative;
+            /* הכנת כותרת לאפקטים */
+            z-index: 1;
+            /* מעל ה- backdrop */
+        }
+
+        .content-container p {
+            color: #e0e7ff;
+            line-height: 1.5;
+            /* רווח בין השורות */
+            margin-bottom: 15px;
+            /* רווח מתחת לפסקאות */
+        }
+
+        /* עיצוב כפתורים */
+        .content-container a {
+            background-color: #1a66ff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-container a:hover {
+            background-color: #0096ff;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="tabs-container">
             <div class="tabs">
-                <div class="tab active" data-target="home">ברוכים הבאים 🌐</div>
+                <div class="tab active" data-target="services">שירותים 💼</div>
+                <div class="tab" data-target="home">ברוכים הבאים 🌐</div>
                 <div class="tab" data-target="about">אודות 💡</div>
                 <div class="tab" data-target="projects">פרויקטים 🚀</div>
                 <div class="tab" data-target="contact">יצירת קשר 📧</div>
-                <div class="tab" data-target="services">שירותים</div>
+                <div class="tab" data-target="whatsapp">וואטסאפ</div>
             </div>
         </div>
 
-        <div id="services" class="content-container">
+        <div id="services" class="content-container active">
             <h2>שירותים ב-Fiverr 🛠️</h2>
             <p>קבלו פתרונות פיתוח מותאמים אישית דרך Fiverr! לחצו כאן כדי לראות את השירותים שלנו בפלטפורמה.</p>
             <a href="https://www.fiverr.com" target="_blank">ל-Fiverr 🚀</a>
@@ -212,30 +275,426 @@
             <a href="https://www.upwork.com" target="_blank">ל-Upwork 🔗</a>
         </div>
 
-        <div id="home" class="content-container active">
+        <div id="home" class="content-container">
             <h2>ברוכים הבאים ל-SphereCraftLab!</h2>
             <p>מעבדת פיתוח חדשנית שממוקדת ביצירתיות, קוד חכם ופתרונות מינימליסטיים. כאן, אנו מביאים את הרעיונות שלכם
                 לחיים.</p>
+            <p>אנו מציעים מגוון רחב של פתרונות טכנולוגיים, החל מפיתוח אתרים ועד לפיתוח אפליקציות מתקדמות.</p>
+        </div>
+
+        <div id="whatsapp" class="content-container">
+            <div id="form1" class="form-container ">
+                <style>
+                    h1 {
+                        text-align: center;
+                        font-size: 48px;
+                        font-weight: 700;
+                        margin-bottom: 10px;
+                        color: #4f4f4f55;
+                        text-transform: uppercase;
+                        letter-spacing: 1.5px;
+                        position: absolute;
+                        animation: fadeInDown 1.2s ease-in-out;
+                        z-index: 2;
+                    }
+
+                    .form-container {
+                        /* position: absolute; */
+                        background-color: rgba(255, 255, 255, 0.5);
+                        border-radius: 15px;
+                        padding: 24px;
+                        /* min-height: 100%; */
+                        min-width: 80%;
+                        /* width: 100%; */
+                        /* max-width: 444px; */
+                        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+                        animation: slideUp 4.4s ease-in-out;
+                        z-index: 2;
+                        backdrop-filter: blur(5px);
+                        /* אפקט טשטוש על התוכן */
+                    }
+
+                    .form-group {
+                        margin-bottom: 10px;
+                        /* position: relative; */
+                    }
+
+                    label {
+                        display: block;
+                        font-weight: 700;
+                        font-size: 18px;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    label i {
+                        margin-left: 6px;
+                        color: #ffeb3b;
+                    }
+
+                    .input-field {
+                        font-size: 24px;
+                        width: 100%;
+                        padding: 4px 1px;
+                        border-radius: 10px;
+                        border: none;
+                        color: white;
+                        background: #4a4a4aaa;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                        font-size: 14px;
+                        transition: background 0.3s, box-shadow 0.3s;
+                    }
+
+                    .input-field:focus {
+                        background: #4a4a4a55;
+                        box-shadow: 0 0 8px rgba(33, 203, 153, 0.5);
+                    }
+
+                    textarea {
+                        resize: vertical;
+                        min-height: 100px;
+                    }
+
+                    .submit-btn {
+                        background: linear-gradient(to right, #44ccaadd, #44ffaadd);
+                        color: #4a4a4a;
+                        padding: 12px;
+                        border: none;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        width: 100%;
+                        font-size: 24px;
+                        transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+                    }
+
+                    .submit-btn:hover {
+                        background: linear-gradient(to right, #44ffaa, #44ff55);
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                    }
+
+                    .submit-btn:active {
+                        transform: translateY(2px);
+                        background: #e64a19;
+                        box-shadow: none;
+                    }
+
+                    /* אפקטי אנימציה */
+                    @keyframes fadeInDown {
+                        0% {
+                            opacity: 0;
+                            transform: translateY(-50px);
+                        }
+
+                        100% {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+
+                    @keyframes slideUp {
+                        0% {
+                            opacity: 0;
+                            transform: translateY(50px);
+                        }
+
+                        100% {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+
+                    @keyframes moveBackground {
+                        0% {
+                            background-position: center top;
+                        }
+
+                        100% {
+                            background-position: center bottom;
+                        }
+                    }
+
+                    /* רספונסיביות */
+                    @media (max-width: 500px) {
+                        .form-container {
+                            width: 90%;
+                            padding: 20px;
+                        }
+
+                        h2 {
+                            font-size: 22px;
+                        }
+                    }
+                </style>
+
+                <div class="">
+                    <label for="service1"><i class="fas fa-cogs"></i> בחר שירות:</label>
+                    <select id="service1" class="input-field" onchange="updateSubService(1)">
+                        <option value="">בחר שירות</option>
+                        <option value="שירות 1 - פיתוח תוכנה בהתאמה אישית">שירות 1 - פיתוח תוכנה בהתאמה אישית</option>
+                        <option value="שירות 2 - אוטומציה של תהליכים">שירות 2 - אוטומציה של תהליכים</option>
+                        <option value="שירות 3 - תחזוקה ושדרוג">שירות 3 - תחזוקה ושדרוג</option>
+                        <option value="שירות 4 - בניית אתרי מסחר אלקטרוני">שירות 4 - בניית אתרי מסחר אלקטרוני</option>
+                        <option value="שירות 5 - פיתוח מערכות מידע">שירות 5 - פיתוח מערכות מידע</option>
+                        <option value="שירות 6 - אופטימיזציה למנועי חיפוש (SEO)">שירות 6 - אופטימיזציה למנועי חיפוש
+                            (SEO)
+                        </option>
+                        <option value="שירות 7 - פיתוח אפליקציות אינטרנט">שירות 7 - פיתוח אפליקציות אינטרנט</option>
+                        <option value="שירות 8 - פיתוח משחקים דיגיטליים">שירות 8 - פיתוח משחקים דיגיטליים</option>
+                        <option value="שירות 9 - פתרונות אבטחת מידע">שירות 9 - פתרונות אבטחת מידע</option>
+                        <option value="שירות 10 - ניתוח נתונים ודוחות">שירות 10 - ניתוח נתונים ודוחות</option>
+                        <option value="שירות 11 - הדרכות וסדנאות טכנולוגיות">שירות 11 - הדרכות וסדנאות טכנולוגיות
+                        </option>
+                        <option value="שירות 12 - שירותי קונסולטינג בעסקי טכנולוגיה">שירות 12 - שירותי קונסולטינג בעסקי
+                            טכנולוגיה</option>
+                        <option value="שירות 13 - עיצוב גרפי">שירות 13 - עיצוב גרפי</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subService1"><i class="fas fa-cog"></i> בחר תת שירות:</label>
+                    <select id="subService1" class="input-field">
+                        <option value="">בחר תת שירות</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="name1"><i class="fas fa-user"></i> שם מלא:</label>
+                    <input type="text" id="name1" class="input-field" placeholder="שם מלא" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email1"><i class="fas fa-envelope"></i> אימייל:</label>
+                    <input type="email" id="email1" class="input-field" placeholder="אימייל" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message1"><i class="fas fa-comment"></i> הודעה:</label>
+                    <textarea id="message1" class="input-field" placeholder="הודעה" required></textarea>
+                </div>
+
+                <input type="submit" value="שלח" class="submit-btn" onclick="sendWhatsApp(1)">
+                <script>
+                    function updateSubService(serviceNumber) {
+                        const selectedValue = document.getElementById(
+                            `service${serviceNumber}`
+                        ).value;
+                        const subServiceSelect = document.getElementById(
+                            `subService${serviceNumber}`
+                        );
+
+                        if (selectedValue === "שירות 1 - פיתוח תוכנה בהתאמה אישית") {
+                            subServiceSelect.innerHTML = `
+                        <option value="פיתוח אפליקציות">📱 פיתוח אפליקציות (iOS, Android) - ₪5,000</option>
+                        <option value="פיתוח אתרים">💻 פיתוח אתרים (React, Angular) - ₪4,000</option>
+                        <option value="פיתוח תוכנה מותאמת אישית">🔍 פיתוח תוכנה מותאמת אישית - ₪6,000</option>
+                        <option value="שירותי API">🔗 שירותי API - ₪3,000</option>
+                        <option value="פתרונות בלוקצ'יין">⛓️ פתרונות בלוקצ'יין - ₪7,000</option>
+                        <option value="פיתוח משחקים">🎮 פיתוח משחקים - ₪8,000</option>
+                    `;
+                        } else if (selectedValue === "שירות 2 - אוטומציה של תהליכים") {
+                            subServiceSelect.innerHTML = `
+                        <option value="אוטומציה עסקית">🔄 אוטומציה עסקית (CRM, ERP) - ₪4,000</option>
+                        <option value="אוטומציה שיווקית">📈 אוטומציה שיווקית (כלים לניהול קמפיינים) - ₪3,500</option>
+                        <option value="אוטומציה של תהליכים ידניים">🤖 אוטומציה של תהליכים ידניים - ₪3,000</option>
+                        <option value="כלים לאוטומציה">🛠️ כלים לאוטומציה (Zapier, Integromat) - ₪2,000</option>
+                        <option value="אוטומציה של דוחות">📊 אוטומציה של דוחות ומידע - ₪3,500</option>
+                    `;
+                        } else if (selectedValue === "שירות 3 - תחזוקה ושדרוג") {
+                            subServiceSelect.innerHTML = `
+                        <option value="שדרוג מערכת">🔧 שדרוג מערכת (מעליות לגרסה חדשה) - ₪2,500</option>
+                        <option value="תחזוקה שוטפת">🛠️ תחזוקה שוטפת (גיבויים, עדכונים) - ₪1,500</option>
+                        <option value="שירותי ניטור">📊 שירותי ניטור (בדיקות ביצועים) - ₪3,000</option>
+                        <option value="ייעוץ טכנולוגי">💡 ייעוץ טכנולוגי - ₪4,000</option>
+                        <option value="שדרוגי אבטחה">🔒 שדרוגי אבטחה - ₪2,500</option>
+                    `;
+                        } else if (selectedValue === "שירות 4 - בניית אתרי מסחר אלקטרוני") {
+                            subServiceSelect.innerHTML = `
+                        <option value="פיתוח חנויות מקוונות">🛒 פיתוח חנויות מקוונות (WooCommerce, Shopify) - ₪5,500</option>
+                        <option value="אופטימיזציה של חוויית משתמש">🔍 אופטימיזציה של חוויית משתמש באתרי מסחר - ₪3,500</option>
+                        <option value="שירותי תשלום מאובטחים">💳 שירותי תשלום מאובטחים - ₪2,500</option>
+                    `;
+                        } else if (selectedValue === "שירות 5 - פיתוח מערכות מידע") {
+                            subServiceSelect.innerHTML = `
+                        <option value="פתרונות ניהול מידע">📊 פתרונות ניהול מידע (CRM, ERP) - ₪4,500</option>
+                        <option value="פיתוח דאטה בייס">🗄️ פיתוח דאטה בייס - ₪3,000</option>
+                        <option value="ניתוח מידע">🔍 ניתוח מידע ודוחות - ₪2,500</option>
+                    `;
+                        } else if (selectedValue === "שירות 6 - אופטימיזציה למנועי חיפוש (SEO)") {
+                            subServiceSelect.innerHTML = `
+                        <option value="שיפור דירוג אתרים">🔍 שיפור דירוג אתרים (On-Page, Off-Page) - ₪3,500</option>
+                        <option value="תוכן SEO">📝 תוכן SEO (כתיבה מותאמת) - ₪2,500</option>
+                        <option value="מחקר מילות מפתח">🔑 מחקר מילות מפתח - ₪2,000</option>
+                    `;
+                        } else if (selectedValue === "שירות 7 - פיתוח אפליקציות אינטרנט") {
+                            subServiceSelect.innerHTML = `
+                        <option value="פיתוח אפליקציות מבוססות דפדפן">🌐 פיתוח אפליקציות מבוססות דפדפן (React, Vue) - ₪4,000</option>
+                        <option value="אפליקציות רספונסיביות">📱 אפליקציות רספונסיביות (Mobile-First) - ₪3,500</option>
+                        <option value="אפליקציות API">🔗 אפליקציות API - ₪2,500</option>
+                    `;
+                        } else if (selectedValue === "שירות 8 - פיתוח משחקים דיגיטליים") {
+                            subServiceSelect.innerHTML = `
+                        <option value="פיתוח משחקים למובייל">🎮 פיתוח משחקים למובייל (iOS, Android) - ₪6,000</option>
+                        <option value="פיתוח משחקים באינטרנט">🌐 פיתוח משחקים באינטרנט (WebGL, Unity) - ₪7,000</option>
+                        <option value="עיצוב משחקים">🖌️ עיצוב משחקים - ₪3,500</option>
+                    `;
+                        } else if (selectedValue === "שירות 9 - פתרונות אבטחת מידע") {
+                            subServiceSelect.innerHTML = `
+                        <option value="הגנה על מידע ונתונים">🔒 הגנה על מידע ונתונים - ₪4,000</option>
+                        <option value="בדיקות חדירות">🛡️ בדיקות חדירות (Penetration Testing) - ₪3,000</option>
+                        <option value="הדרכות אבטחת מידע">📚 הדרכות אבטחת מידע - ₪2,500</option>
+                    `;
+                        } else if (selectedValue === "שירות 10 - ניתוח נתונים ודוחות") {
+                            subServiceSelect.innerHTML = `
+                        <option value="ניתוח נתונים עסקיים">📈 ניתוח נתונים עסקיים - ₪3,500</option>
+                        <option value="כלים לניתוח נתונים">🔍 כלים לניתוח נתונים (Tableau, Power BI) - ₪3,000</option>
+                        <option value="דוחות מותאמים אישית">📝 דוחות מותאמים אישית - ₪2,500</option>
+                    `;
+                        } else if (selectedValue === "שירות 11 - הדרכות וסדנאות טכנולוגיות") {
+                            subServiceSelect.innerHTML = `
+                        <option value="סדנאות טכנולוגיות">🧑‍🏫 סדנאות טכנולוגיות (Online, Offline) - ₪2,500</option>
+                        <option value="הדרכות למערכות מידע">📚 הדרכות למערכות מידע - ₪2,000</option>
+                        <option value="תמיכה טכנית">🛠️ תמיכה טכנית - ₪1,500</option>
+                    `;
+                        } else if (selectedValue === "שירות 12 - שירותי קונסולטינג בעסקי טכנולוגיה") {
+                            subServiceSelect.innerHTML = `
+                        <option value="ייעוץ עסקי טכנולוגי">💼 ייעוץ עסקי טכנולוגי - ₪5,000</option>
+                        <option value="אסטרטגיה דיגיטלית">🌐 אסטרטגיה דיגיטלית - ₪4,000</option>
+                        <option value="ניטור וייעול תהליכים">🔍 ניטור וייעול תהליכים - ₪3,000</option>
+                    `;
+                        } else if (selectedValue === "שירות 13 - עיצוב גרפי") {
+                            subServiceSelect.innerHTML = `
+                        <option value="עיצוב לוגואים">🎨 עיצוב לוגואים - ₪2,000</option>
+                        <option value="עיצוב חומרי פרסום">📰 עיצוב חומרי פרסום - ₪2,500</option>
+                        <option value="עיצוב גרפי לאינטרנט">💻 עיצוב גרפי לאינטרנט - ₪2,500</option>
+                    `;
+                        } else {
+                            subServiceSelect.innerHTML = "";
+                        }
+                    }
+
+                    function sendWhatsApp(formNumber) {
+                        const name = document.getElementById(`name${formNumber}`).value;
+                        const email = document.getElementById(`email${formNumber}`).value;
+                        const message = document.getElementById(`message${formNumber}`).value;
+                        const service = document.getElementById(`service${formNumber}`).value; // הוסף את השירות
+                        const subService = document.getElementById(`subService${formNumber}`).value;
+
+                        const whatsappMessage = `שם: ${name}\nאימייל: ${email}\nשירות: ${service}\nתת שירות: ${subService}\nהודעה: ${message}`;
+                        const phoneNumber = "972543285967"; // החלף במספר הטלפון שלך
+                        const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+                            whatsappMessage
+                        )}`;
+
+                        window.open(whatsappLink, "_blank");
+                    }
+
+                </script>
+
+            </div>
+
+
         </div>
 
         <div id="about" class="content-container">
             <h2>אודות SphereCraftLab</h2>
             <p>אנחנו מאמינים ב"פחות זה יותר". כל שורת קוד כאן נכתבת כדי למקסם תוצאות תוך שימוש במשאבים מינימליים.</p>
             <p>שיתופי פעולה הם חלק מהותי מהעשייה שלנו! אם יש לכם רעיון מעניין, נשמח לשמוע.</p>
+            <p>הצוות שלנו מורכב ממומחים בתחומים שונים, וכולל מפתחים, מעצבים ואנליסטים.</p>
         </div>
 
         <div id="projects" class="content-container">
             <h2>מה תמצאו כאן? 🚀</h2>
-            <p>- **פרויקטים מעשיים:** מבחר פרויקטים מינימליסטיים שנבנו בעזרת HTML, CSS, JavaScript ועוד.</p>
-            <p>- **תבניות אתרים ופיתוח אפליקציות:** תבניות קוד יעילות להאצת תהליך הפיתוח.</p>
-            <p>- **כלים וסקריפטים מותאמים:** אוסף כלים לשיפור ביצועי הפיתוח שלכם.</p>
+            <p>- <strong>פרויקטים מעשיים:</strong> מבחר פרויקטים מינימליסטיים שנבנו בעזרת HTML, CSS, JavaScript ועוד.
+            </p>
+            <p>- <strong>תבניות אתרים ופיתוח אפליקציות:</strong> תבניות קוד יעילות להאצת תהליך הפיתוח.</p>
+            <p>- <strong>כלים וסקריפטים מותאמים:</strong> אוסף כלים לשיפור ביצועי הפיתוח שלכם.</p>
+            <p>- <strong>קורסים וסדנאות:</strong> אנחנו מציעים סדנאות שמטרתן להקנות ידע טכנולוגי מתקדם.</p>
         </div>
 
         <div id="contact" class="content-container">
+            <style>
+                #contact {
+                    background: rgba(255, 255, 255, 0.2);
+                    /* צבע רקע בהיר עם שקיפות */
+                    border-radius: 15px;
+                    /* פינות מעוגלות */
+                    box-shadow: 0 0 40px rgba(0, 150, 255, 0.4);
+                    /* צללים להדגשה */
+                    padding: 30px;
+                    /* ריווח פנימי */
+                    transition: transform 0.3s ease;
+                    /* אנימציה בעת ה-hover */
+                }
+
+                #contact:hover {
+                    transform: scale(1.02);
+                    /* הגדלה קלה בעת ריחוף */
+                }
+
+                #contact h2 {
+                    color: #00d4ff;
+                    /* צבע טקסט שונה לכותרת */
+                    text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
+                    /* צלליות לכותרת */
+                }
+
+                #contact h3 {
+                    color: #ffffff;
+                    /* צבע טקסט לבן לכותרות המשנה */
+                    margin-top: 20px;
+                    /* ריווח מעל הכותרות */
+                }
+
+                #contact p {
+                    color: #e0e7ff;
+                    /* צבע טקסט בהיר לפסקאות */
+                }
+
+                #contact a {
+                    color: #00d4ff;
+                    /* צבע קישורים */
+                    text-decoration: none;
+                    /* הסרת קו מתחת לקישורים */
+                    transition: color 0.3s ease;
+                    /* אנימציה בעת שינוי צבע */
+                }
+
+                #contact a:hover {
+                    color: white;
+                    /* צבע קישורים בה-hover */
+                    text-decoration: underline;
+                    /* קו תחתון בעת ריחוף */
+                }
+
+                #contact ul {
+                    padding-left: 20px;
+                    /* ריווח פנימי לרשימות */
+                    color: #e0e7ff;
+                    /* צבע טקסט בהיר לרשימות */
+                }
+            </style>
             <h2>יצירת קשר</h2>
-            <p>מעוניינים לשוחח? תוכלו לשלוח לנו מייל לכתובת: <a
-                    href="mailto:contact@spherecraftlab.com">contact@spherecraftlab.com</a></p>
+            <p>מעוניינים לשוחח? נשמח לשמוע מכם! תוכלו לשלוח לנו מייל לכתובת:
+                <a href="mailto:hivesparks@gmail.com">hivesparks@gmail.com</a>
+            </p>
+            <p>אם יש לכם שאלות, רעיונות או הצעות, אל תהססו לפנות אלינו. אנו זמינים בכל עת ונשמח לסייע!</p>
+
+
+            <h3>מגוון ערוצי תקשורת:</h3>
+            <p>בנוסף למייל, אתם יכולים למצוא אותנו גם ברשתות החברתיות:</p>
+            <ul>
+                <a href="https://www.facebook.com/SphereCraftLab" target="_blank">פייסבוק</a>
+                <a href="https://www.instagram.com/SphereCraftLab" target="_blank">אינסטגרם</a>
+                <a href="https://www.linkedin.com/company/spherecraftlab" target="_blank">לינקדאין</a>
+            </ul>
+
+            <h3>אנחנו כאן בשבילכם!</h3>
+            <p>שיחה עם המומחים שלנו יכולה לשדרג את הפרויקט שלכם! אל תהססו ליצור קשר כדי לדון על פתרונות מותאמים אישית
+                עבורכם.</p>
         </div>
+
     </div>
 
     <script>
