@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SphereCraftLab - פיתוח חכם</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, #091540, #010c29);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            height: 80%;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .tabs-container {
+            overflow-x: auto;
+            /* מאפשר גלילה אופקית */
+            overflow-y: hidden;
+            /* חוסם גלילה אנכית */
+            white-space: nowrap;
+            /* מונע שורות חדשות */
+            width: 80%;
+            /* רוחב מלא */
+            padding: 10px 10px;
+            /* ריווח למעלה ולמטה */
+        }
+
+        .tabs {
+            display: inline-flex;
+            /* מאפשר אלמנטים בטאב להופיע בשורה */
+            gap: 20px;
+            /* רווח בין הטאבים */
+        }
+
+        .tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.4);
+            color: #e0e7ff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            text-align: center;
+            display: inline-block;
+            /* מאפשר להם להופיע בשורה */
+        }
+
+        .tab:hover {
+            background: rgba(0, 150, 255, 0.2);
+            transform: translateY(-3px) translateZ(5px);
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.7);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #1a66ff, #0096ff);
+            color: white;
+            transform: translateZ(10px) scale(1.1);
+            box-shadow: 0 0 40px rgba(0, 150, 255, 1);
+        }
+
+        .content-container {
+            width: 80%;
+            height: 60%;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 70px rgba(0, 150, 255, 0.4);
+            padding: 30px;
+            overflow: hidden;
+            display: none;
+            border: 2px solid rgba(0, 150, 255, 0.5);
+            backdrop-filter: blur(15px);
+            transition: all 0.6s ease;
+            transform: rotateX(2deg) translateZ(30px);
+        }
+
+        .content-container.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+            transform: rotateX(0deg) translateZ(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #home h2,
+        #about h2,
+        #services h2,
+        #projects h2,
+        #contact h2 {
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
+        }
+
+        #home p,
+        #about p,
+        #services p,
+        #projects p,
+        #contact p {
+            color: #e0e7ff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: row;
+                /* שינוי לכיוון טורי */
+                align-items: center;
+                /* מיישר את הטאבים לאמצע */
+                gap: 15px;
+                /* רווח בין הטאבים */
+                margin-bottom: 20px;
+                /* רווח מתחת לטאבים */
+            }
+
+            .tab {
+                padding: 12px 20px;
+                /* ריווח פנימי של הטאב */
+                font-size: 14px;
+                /* גודל טקסט */
+            }
+
+            .content-container {
+                width: 90%;
+                /* רוחב תוכן */
+                height: 50%;
+                /* גובה תוכן */
+                padding: 20px;
+                /* ריווח פנימי */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tabs {
+                flex-direction: row;
+                /* גם כאן שינוי לכיוון טורי */
+                align-items: center;
+                /* מיישר את הטאבים לאמצע */
+                gap: 5px;
+                /* רווח בין הטאבים */
+            }
+
+            .tab {
+                padding: 10px 15px;
+                /* ריווח פנימי של הטאב */
+                font-size: 12px;
+                /* גודל טקסט */
+            }
+
+            .content-container {
+                width: 90%;
+                /* רוחב תוכן */
+                height: 45%;
+                /* גובה תוכן */
+                padding: 20px;
+                /* ריווח פנימי */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tabs-container">
+            <div class="tabs">
+                <div class="tab active" data-target="home">ברוכים הבאים 🌐</div>
+                <div class="tab" data-target="about">אודות 💡</div>
+                <div class="tab" data-target="projects">פרויקטים 🚀</div>
+                <div class="tab" data-target="contact">יצירת קשר 📧</div>
+                <div class="tab" data-target="services">שירותים</div>
+            </div>
+        </div>
+
+        <div id="services" class="content-container">
+            <h2>שירותים ב-Fiverr 🛠️</h2>
+            <p>קבלו פתרונות פיתוח מותאמים אישית דרך Fiverr! לחצו כאן כדי לראות את השירותים שלנו בפלטפורמה.</p>
+            <a href="https://www.fiverr.com" target="_blank">ל-Fiverr 🚀</a>
+
+            <h2>שירותים ב-Upwork 💼</h2>
+            <p>מעוניינים בשירותים נוספים? הצטרפו ל-Upwork ותמצאו פתרונות פיתוח מותאמים אישית לכל פרויקט.</p>
+            <a href="https://www.upwork.com" target="_blank">ל-Upwork 🔗</a>
+        </div>
+
+        <div id="home" class="content-container active">
+            <h2>ברוכים הבאים ל-SphereCraftLab!</h2>
+            <p>מעבדת פיתוח חדשנית שממוקדת ביצירתיות, קוד חכם ופתרונות מינימליסטיים. כאן, אנו מביאים את הרעיונות שלכם
+                לחיים.</p>
+        </div>
+
+        <div id="about" class="content-container">
+            <h2>אודות SphereCraftLab</h2>
+            <p>אנחנו מאמינים ב"פחות זה יותר". כל שורת קוד כאן נכתבת כדי למקסם תוצאות תוך שימוש במשאבים מינימליים.</p>
+            <p>שיתופי פעולה הם חלק מהותי מהעשייה שלנו! אם יש לכם רעיון מעניין, נשמח לשמוע.</p>
+        </div>
+
+        <div id="projects" class="content-container">
+            <h2>מה תמצאו כאן? 🚀</h2>
+            <p>- **פרויקטים מעשיים:** מבחר פרויקטים מינימליסטיים שנבנו בעזרת HTML, CSS, JavaScript ועוד.</p>
+            <p>- **תבניות אתרים ופיתוח אפליקציות:** תבניות קוד יעילות להאצת תהליך הפיתוח.</p>
+            <p>- **כלים וסקריפטים מותאמים:** אוסף כלים לשיפור ביצועי הפיתוח שלכם.</p>
+        </div>
+
+        <div id="contact" class="content-container">
+            <h2>יצירת קשר</h2>
+            <p>מעוניינים לשוחח? תוכלו לשלוח לנו מייל לכתובת: <a
+                    href="mailto:contact@spherecraftlab.com">contact@spherecraftlab.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const containers = document.querySelectorAll('.content-container');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                containers.forEach(container => container.classList.remove('active'));
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        document.body.addEventListener('mousemove', e => {
+            const moveX = (e.clientX / window.innerWidth - 0.5) * 10; // עדין יותר
+            const moveY = (e.clientY / window.innerHeight - 0.5) * 10; // עדין יותר
+            document.querySelector('.container').style.transform = `rotateX(${moveY}deg) rotateY(${-moveX}deg)`;
+        });
+    </script>
+</body>
+
+</html>
